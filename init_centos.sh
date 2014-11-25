@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -x
 
 function fatal() {
     local EXITCODE=$1
@@ -51,8 +51,8 @@ if [ ! -f ${HOME}/.vimrc ]; then
 fi
 
 # change hostname ($1)
-sudo hostname $1
-sudo sed -e 's|^\(HOSTNAME\)=.*|\1='$1'|' -i /etc/sysconfig/network
+sudo hostnamectl set-hostname $1
+#grep 'HOSTNAME' /etc/sysconfig/network && sudo sed -e 's|.*\(HOSTNAME\).*|\1='$1'|' -i /etc/sysconfig/network || sudo sed -e '$ a HOSTNAME='$1 -i /etc/sysconfig/network
 #sudo sed -e '/^127\.0\.0\.1.*/ d' -i /etc/hosts
 #sudo sed -e '1 i 127.0.0.1 localhost' -i /etc/hosts
 #sudo sed -e '1 a 127.0.0.1 '$1 -i /etc/hosts
