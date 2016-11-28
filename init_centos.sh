@@ -35,6 +35,8 @@ sudo yum -y install wget
 
 # install etckeeper and git
 sudo yum -y install git
+sudo git config --global user.email "root@${1}"
+sudo git config --global user.name "root"
 sudo yum -y install etckeeper
 sudo sed -e 's|.*\(VCS="git"\)|\1|' -i /etc/etckeeper/etckeeper.conf
 sudo sed -e 's|.*\(VCS="bzr"\)|#\1|' -i /etc/etckeeper/etckeeper.conf
